@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://Bhanu_29:rWmC4aEUSyE714HD@cluster0.qzhmw.azure.mongodb.net/ContctKeeper?retryWrites=true&w=majority",
+  "jwtSecret": "hahaha"
+}
