@@ -5,11 +5,9 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
-const secret
-if(process.env.NODE_ENV==="production")
- secret= process.env.jwtSecret;
- else
- secret=config.get('jwtSecret')
+let secret;
+if (process.env.NODE_ENV === 'production') secret = process.env.jwtSecret;
+else secret = config.get('jwtSecret');
 //@route POST api/users
 //@desc REgister a user
 //@access Public
@@ -47,15 +45,10 @@ router.post(
           id: user.id,
         },
       };
-      jwt.sign(
-        payload,
-        secret,
-        { expiresIn: 360000 },
-        (err, token) => {
-          if (err) throw err;
-          res.json({ token });
-        }
-      );
+      jwt.sign(payload, secret, { expiresIn: 360000 }, (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      });
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Internal Server Error');
